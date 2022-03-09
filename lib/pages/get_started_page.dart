@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/utils/theme.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class GetStartedPage extends StatelessWidget {
+  const GetStartedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

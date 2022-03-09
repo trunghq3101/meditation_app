@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:meditation_app/pages/home_page.dart';
+import 'package:meditation_app/pages/get_started_page.dart';
 import 'package:meditation_app/utils/theme.dart';
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kColorPrimary,
       ),
-      home: const HomePage(),
+      home: const GetStartedPage(),
     );
   }
 }
