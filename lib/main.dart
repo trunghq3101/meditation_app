@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:meditation_app/pages/choose_topic_page.dart';
 import 'package:meditation_app/pages/get_started_page.dart';
 import 'package:meditation_app/utils/theme.dart';
 
@@ -21,10 +22,15 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: kColorPrimary,
       ),
-      home: const GetStartedPage(),
+      initialRoute: '$GetStartedPage',
+      routes: {
+        '$GetStartedPage': (_) => const GetStartedPage(),
+        '$ChooseTopicPage': (_) => const ChooseTopicPage(),
+      },
     );
   }
 }

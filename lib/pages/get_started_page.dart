@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meditation_app/pages/choose_topic_page.dart';
 import 'package:meditation_app/utils/theme.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -88,7 +89,9 @@ class GetStartedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed('$ChooseTopicPage');
+      },
       child: const Text('GET STARTED'),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(kColorLightGrey),
