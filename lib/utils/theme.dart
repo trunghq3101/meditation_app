@@ -31,4 +31,20 @@ class PrimaryFont {
       fontSize: size,
     );
   }
+
+  static TextStyle bold(double size) {
+    return TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w700,
+      fontSize: size,
+    );
+  }
+}
+
+extension GetOrientation on BuildContext {
+  Orientation get orientation => MediaQuery.of(this).orientation;
+}
+
+extension GetSize on BuildContext {
+  Size get screenSize => MediaQuery.of(this).size;
 }

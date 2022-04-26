@@ -2,75 +2,76 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/pages/choose_topic_page.dart';
 import 'package:meditation_app/utils/theme.dart';
+import 'package:meditation_app/widgets/reponsive_builder.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
-    final size = MediaQuery.of(context).size;
+    final size = context.screenSize;
     return Scaffold(
       backgroundColor: kColorPrimary,
       body: SafeArea(
-        child: orientation == Orientation.portrait
-            ? Stack(
-                children: [
-                  const GetStartedBackground(),
-                  const FractionallySizedBox(
-                    heightFactor: 0.35,
+        child: ResponsiveBuilder(
+          portrait: Stack(
+            children: [
+              const GetStartedBackground(),
+              const FractionallySizedBox(
+                heightFactor: 0.35,
+                child: GetStartedHeader(),
+              ),
+              Align(
+                alignment: const Alignment(0.0, 0.8),
+                child: GetStartedButton(
+                  fixedSize: MaterialStateProperty.all(
+                    Size(
+                      size.width * 0.9,
+                      size.height * 0.065,
+                    ),
+                  ),
+                  textStyle: MaterialStateProperty.all(
+                    PrimaryFont.medium(size.height * 0.015),
+                  ),
+                ),
+              )
+            ],
+          ),
+          landscape: Row(
+            children: [
+              const Expanded(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: FractionallySizedBox(
+                    heightFactor: 0.7,
                     child: GetStartedHeader(),
                   ),
-                  Align(
-                    alignment: const Alignment(0.0, 0.8),
-                    child: GetStartedButton(
-                      fixedSize: MaterialStateProperty.all(
-                        Size(
-                          size.width * 0.9,
-                          size.height * 0.065,
+                ),
+              ),
+              Expanded(
+                child: Stack(
+                  children: [
+                    const GetStartedBackground(),
+                    Align(
+                      alignment: const Alignment(0.0, 0.8),
+                      child: GetStartedButton(
+                        fixedSize: MaterialStateProperty.all(
+                          Size(
+                            size.width * 0.4,
+                            size.height * 0.065,
+                          ),
+                        ),
+                        textStyle: MaterialStateProperty.all(
+                          PrimaryFont.medium(size.height * 0.015),
                         ),
                       ),
-                      textStyle: MaterialStateProperty.all(
-                        PrimaryFont.medium(size.height * 0.015),
-                      ),
-                    ),
-                  )
-                ],
-              )
-            : Row(
-                children: [
-                  const Expanded(
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: FractionallySizedBox(
-                        heightFactor: 0.7,
-                        child: GetStartedHeader(),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        const GetStartedBackground(),
-                        Align(
-                          alignment: const Alignment(0.0, 0.8),
-                          child: GetStartedButton(
-                            fixedSize: MaterialStateProperty.all(
-                              Size(
-                                size.width * 0.4,
-                                size.height * 0.065,
-                              ),
-                            ),
-                            textStyle: MaterialStateProperty.all(
-                              PrimaryFont.medium(size.height * 0.015),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+                    )
+                  ],
+                ),
               ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -116,11 +117,10 @@ class GetStartedBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
     return Align(
       alignment: Alignment.bottomCenter,
       child: FractionallySizedBox(
-        heightFactor: orientation == Orientation.portrait ? 0.6 : 0.9,
+        heightFactor: context.orientation == Orientation.portrait ? 0.6 : 0.9,
         widthFactor: 1,
         child: FittedBox(
           fit: BoxFit.cover,
