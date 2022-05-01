@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meditation_app/data/model/my_error.model.dart';
 import 'package:meditation_app/data/model/topic.model.dart';
 import 'package:meditation_app/data/topic_storage.dart';
 import 'package:meditation_app/utils/theme.dart';
 import 'package:meditation_app/widgets/reponsive_builder.dart';
 
-final topicStorage = AssetTopicStorage();
+final topicStorage = RemoteTopicStorage();
 
 class ChooseTopicPage extends StatelessWidget {
   const ChooseTopicPage({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _TopicGrid extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
-            child: Text(snapshot.error.toString()),
+            child: Text((snapshot.error as MyError).errorMessage),
           );
         }
         if (!snapshot.hasData) {
