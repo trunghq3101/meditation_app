@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/data/model/my_error.model.dart';
 import 'package:meditation_app/data/model/topic.model.dart';
 import 'package:meditation_app/data/topic_storage.dart';
+import 'package:meditation_app/pages/reminders_page.dart';
 import 'package:meditation_app/utils/theme.dart';
 import 'package:meditation_app/widgets/reponsive_builder.dart';
 
@@ -81,30 +82,35 @@ class _TopicGrid extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           itemBuilder: (context, index) {
             final topic = topics[index];
-            return DecoratedBox(
-              decoration: BoxDecoration(
-                color: topic.bgColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  LayoutBuilder(builder: (context, constraints) {
-                    return SvgPicture.asset(
-                      topic.thumbnail,
-                      width: constraints.maxWidth,
-                    );
-                  }),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                      topics[index].title,
-                      style: PrimaryFont.bold(
-                              context.screenSize.shortestSide * 0.04)
-                          .copyWith(color: topic.textColor),
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('$RemindersPage');
+              },
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: topic.bgColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    LayoutBuilder(builder: (context, constraints) {
+                      return SvgPicture.asset(
+                        topic.thumbnail,
+                        width: constraints.maxWidth,
+                      );
+                    }),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        topics[index].title,
+                        style: PrimaryFont.bold(
+                                context.screenSize.shortestSide * 0.04)
+                            .copyWith(color: topic.textColor),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

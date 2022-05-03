@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:meditation_app/pages/choose_topic_page.dart';
 import 'package:meditation_app/pages/get_started_page.dart';
+import 'package:meditation_app/pages/reminders_page.dart';
 import 'package:meditation_app/utils/theme.dart';
 
 void main() {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '$GetStartedPage': (_) => const GetStartedPage(),
         '$ChooseTopicPage': (_) => const ChooseTopicPage(),
+        '$RemindersPage': (_) => const RemindersPage(),
       },
     );
   }
